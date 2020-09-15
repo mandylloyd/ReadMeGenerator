@@ -30,7 +30,7 @@ const questions = [
           },
           {
             type: "checkbox",
-            name: "license",
+            name: "licenses",
             message: "Check the license(s) required.",
             choices: ["MIT","GPL","Apache","GPL","BSD","LGPL","Ms-PI","BSD"]
           },
@@ -66,16 +66,23 @@ const questions = [
           }
         ]
 
-//prompt the user with the above questions
-function promptQuestions() {
-    inquirer.prompt(questions).then((answers) => {
-    writeToFile;
-    })
- }
 
-// function to write README file
-function writeToFile(fileName, data) {
-}
+inquirer.prompt(questions).then(answers => {
+    // Use user feedback for... whatever!!
+  })
+  .catch(error => {
+    if(error.isTtyError) {
+      // Prompt couldn't be rendered in the current environment
+    } else {
+      // Something else when wrong
+    }
+  });
+
+// function to write README file (needs data ??)
+// fs.writeFile('README.md', data, function (err) {
+//   if (err) return console.log(err);
+//   console.log('File successfuly written!');
+// });
 
 // function to initialize program
 function init() {

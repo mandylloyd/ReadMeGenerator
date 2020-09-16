@@ -35,4 +35,6 @@ function READMEMarkdown(answers) {
   
   # Contact
   ${answers.email}
-}
+`}
+
+module.exports = READMEMarkdown;

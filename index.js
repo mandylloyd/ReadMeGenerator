@@ -1,6 +1,8 @@
 //packages required
 const inquirer = require("inquirer");
 const fs = require("fs");
+var useMarkdown = require("./Develop/READMEMarkdown.js");
+
 
 //questions for the prompt held in an array
 const questions = [
@@ -67,24 +69,14 @@ const questions = [
         ]
 
 
+//start the prompts and plug answers into markdown file to generate README
 inquirer.prompt(questions).then(answers => {
-    // Use user feedback for... whatever!!
+    var x = useMarkdown({ ...answers })
+    console.log("this is x", x);
+    fs.writeFile("README.md", useMarkdown({ ...answers }), function(err) {
+      if (err) {
+        return console.log(err);
+      }
+      console.log("Success!");
+    });
   })
-  .catch(error => {
-    if(error.isTtyError) {
-      // Prompt couldn't be rendered in the current environment
-    } else {
-      // Something else when wrong
-    }
-  });
-
-// function to write README file (needs data ??)
-// fs.writeFile('README.md', data, function (err) {
-//   if (err) return console.log(err);
-//   console.log('File successfuly written!');
-// });
-
-// function to initialize program
-function init() {
-
-}
